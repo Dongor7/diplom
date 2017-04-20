@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="template/head :: meta"/>
+    <th:block th:replace="template/head :: css"/>
+    <th:block th:replace="template/head :: javascript"/>
+    <th:block th:replace="template/head :: javascript-template"/>
+    <script type="text/javascript" th:src="@{/resources/js/object/users.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/page/users.js}"></script>
+</head>
+<!--/*@thymesVar id="User" type="com.itsupportme.gis.entity.User"*/-->
+<body th:class="${'skin-' + T(com.itsupportme.gis.component.layout.ThemesRepository)
+                                .getThemes().get(User.getUserDetails().getTheme())}">
+<div class="wrapper">
+    <th:block th:replace="template/main :: header"/>
+    <th:block th:replace="template/main :: sidebar"/>
+    <div class="content-wrapper">
+        <th:block th:replace="template/main :: content-header"/>
+        <!--Content comes here-->
+        <div class="content" id="users-content">
+            <div class="row">
+                <div class="col-md-12 col-lg-7">
+                    <div class="box box-warning" id="users-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" th:text="#{global_users.users_list}"></h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" id="users-container"></div>
+                        <div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="template/main :: footer"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+table tbody tr td.v-middle {
+    vertical-align: middle;
+}
+table tbody tr td.v-middle label {
+    margin: 0;
+}
+.table.table-borderless tbody tr td, .table.table-borderless tbody th {
+    border: none;
+}
+.pagination {
+    margin: 10px 0 5px 0;
+}
+select.input-sm {
+    line-height: inherit;
+}
+.small-icon {
+    font-size: 14px;
+}
+img.size-90 {
+    width:  90px;
+}
+.break-all {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.margin-right-10 {
+    margin-right: 10px;
+}
+.no-resize {
+    resize: none;
+}
+.pipeline-mini-widget {
+    margin-bottom: 0;
+}
+.dropdown-menu.pipeline-mini-dropdown {
+    padding-bottom: 0;
+    border:         0;
+    background:     0;
+}
+li.element-like-a {
+    display: block;
+    padding: 5px 10px;
+    clear: both;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+li.element-like-a:hover {
+    background-color: #E8F6FF;
+    color: #000000;
+}
+
+label span.active-label {
+    color: #3c8dbc;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 16px;
+}
+label span.active-label:hover {
+    text-decoration: underline;
+}

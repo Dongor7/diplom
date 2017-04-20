@@ -1,0 +1,28 @@
+<!--@thymesVar id="Customer" type="com.itsupportme.gis.entity.Customer"-->
+<form
+        th:action="@{/customers/form}"
+        id="customer-form"
+        method="POST"
+        xmlns:th="http://www.thymeleaf.org"
+        th:object="${Customer}">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label
+                        for="customer-name">Customer Name</label>
+                <input
+                        class="form-control"
+                        type="text"
+                        id="customer-name"
+                        placeholder="Customer Name"
+                        th:field="*{name}" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button type="submit" class="btn btn-success btn-sm"
+                id="submit-button" th:text="#{actions.addNew}"></button>
+        </div>
+    </div>
+</form>

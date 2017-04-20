@@ -1,0 +1,52 @@
+<div xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <!--/*@thymesVar id="ProfileForm" type="com.itsupportme.gis.entity.User"*/-->
+    <form th:object="${ProfileForm}" method="POST"
+          th:action="@{/user/profile/profile_form}">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="hidden" th:field="*{id}"/>
+                    <label for="first" th:text="#{person.first_name}"></label>
+                    <input type="text" class="form-control" id="first" th:placeholder="#{person.first_name}"
+                           th:field="*{first}"/>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="last" th:text="#{person.last_name}"></label>
+                    <input type="text" class="form-control" id="last" th:placeholder="#{person.last_name}"
+                           th:field="*{last}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="username" th:text="#{user.username}"></label>
+                    <input readonly="readonly"
+                           type="text" class="form-control" id="username" th:placeholder="#{user.username}"
+                           th:field="*{username}"/>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password" th:text="#{user.password}"></label>
+                    <input type="text" class="form-control" id="password" th:placeholder="#{user.password}"
+                           name="password" />
+                </div>
+            </div>
+        </div>
+
+        <div class="text-right">
+            <button type="submit" class="btn btn-success btn-sm" th:text="#{actions.apply}"></button>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-12 text-danger" id="error-block"></div>
+    </div>
+</div>

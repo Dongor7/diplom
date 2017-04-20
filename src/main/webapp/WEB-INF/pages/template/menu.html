@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<th:block th:fragment="menu">
+        <!--/*
+            @thymesVar id="Menu" type="com.itsupportme.gis.component.menu.item.ItemList<com.itsupportme.gis.component.menu.item.MenuItem>"
+        */-->
+        <th:block th:each="item : ${Menu}">
+            <!--/*@thymesVar id="item" type="com.itsupportme.gis.component.menu.item.MenuItem"*/-->
+            <!-- Separator -->
+            <li class="header" th:unless="${item.getSeparator() == false}">
+                <th:block th:text="${item.getTitle()}"/>
+            </li>
+            <li th:class="${item.getActive() ? 'active' : 'regular'}"
+                th:unless="${item.getChildren().size() > 0 || item.getSeparator() == true}">
+                <a th:href="@{${item.getAlias()}}">
+                    <i th:if="${item.getIcon() != null}" th:class="${'fa fa-' + item.getIcon()}"></i>
+                    <span th:text="${item.getTitle()}"></span>
+                </a>
+            </li>
+            <li th:if="${item.getChildren().size() > 0}" class="treeview"
+                th:class="${item.hasActive() ? 'treeview active default' : 'treeview'}">
+                <a href="#" th:class="${item.hasActive() ? 'close-forbidden' : 'regular'}">
+                    <i th:if="${item.getIcon() != null}" th:class="${'fa fa-' + item.getIcon()}"></i>
+                    <span th:text="${item.getTitle()}"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul th:class="${item.hasActive() ? 'treeview-menu menu-open' : 'treeview-menu'}">
+                    <th:block th:include="template/menu :: menu" th:with="Menu = ${item.getChildren()}" />
+                </ul>
+            </li>
+        </th:block>
+</th:block>
+</body>
+</html>

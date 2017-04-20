@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body th:fragment="modal_confirm">
+    <div id="modal-confirm" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="modal-confirm-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modal-confirm-container">
+                <div class="modal-header">
+                    <button type="button" class="close cancel" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="modal-confirm-label" th:text="#{confirm_modal.are_you_sure }"></h3>
+                </div>
+                <div class="modal-body">
+                    <p th:text="#{confirm_modal.irreversible}"></p>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        class="btn btn-danger cancel"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                        th:text="#{actions.cancel}"></button>
+                    <button class="btn btn-success" id="confirm-button" th:text="#{actions.confirm}"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

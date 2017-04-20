@@ -1,0 +1,22 @@
+<table
+        xmlns:th="http://www.thymeleaf.org"
+        class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Fax</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!--@thymesVar id="customerList" type="java.util.list<Customer>"-->
+    <tr th:each="customer : ${customerList}">
+        <td th:text="${customer.id}">1</td>
+        <td th:text="${customer.name}">1</td>
+        <td th:text="${customer.phone}">+375332501122</td>
+        <td th:text="${customer.fax}">+375332501122</td>
+    </tr>
+    </tbody>
+</table>

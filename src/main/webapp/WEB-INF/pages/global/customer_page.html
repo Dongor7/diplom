@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="template/head :: meta" />
+    <th:block th:replace="template/head :: css" />
+    <th:block th:replace="template/head :: javascript" />
+    <th:block th:replace="template/head :: javascript-template" />
+    <script type="text/javascript" th:src="@{/resources/js/object/customer_list.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/object/customer_form.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/page/customers.js}"></script>
+</head>
+<!--/*@thymesVar id="User" type="com.itsupportme.gis.entity.User"*/-->
+<body th:class="${'skin-' + T(com.itsupportme.gis.component.layout.ThemesRepository)
+                                .getThemes().get(User.getUserDetails().getTheme())}">
+<div class="wrapper">
+    <th:block th:replace="template/main :: header" />
+    <th:block th:replace="template/main :: sidebar" />
+    <div class="content-wrapper">
+        <th:block th:replace="template/main :: content-header" />
+        <!--Content comes here-->
+        <section class = "content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Customer list-->
+                    <div class="box box-warning" id="customer-list-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" th:text="#{customers.list}"></h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" id="customer-container"></div>
+                        <div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Customer form-->
+                    <div class="box box-warning" id="customer-form-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" th:text="#{customers.form}">Thfhs</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" id="customer-form-container"></div>
+                        <div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <th:block th:replace="template/main :: footer" />
+</div>
+</body>
+</html>

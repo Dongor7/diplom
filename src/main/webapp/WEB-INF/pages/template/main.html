@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body class="skin-purple">
+<div class="wrapper">
+    <!-- Header -->
+    <!--/*@thymesVar id="User" type="com.itsupportme.gis.entity.User"*/-->
+    <!--/*@thymesVar id="Menu" type="com.itsupportme.gis.component.menu.item.ItemList<com.itsupportme.gis.component.menu.item.MenuItem>"*/-->
+    <div class="main-header" th:fragment="header">
+        <a th:href="@{/}" class="logo"><b th:text="#{app.name.one}"></b><th:block
+                th:text="#{app.name.two}" /></a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button -->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!--User -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/resources/img/avatar/avatar5.png"
+                                 th:src="@{${'/resources/img/avatar/'
+                                    + T(com.itsupportme.gis.component.layout.AvatarsRepository)
+                                        .getAvatar().get(User.getUserDetails().getImage()) }}"
+                                 class="img-circle user-image" alt="User image" />
+                            <span class="hidden-xs"><th:block th:text="${User.getUsername()}" /></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="/resources/img/avatar/avatar5.png"
+                                     th:src="@{${'/resources/img/avatar/'
+                                        + T(com.itsupportme.gis.component.layout.AvatarsRepository)
+                                            .getAvatar().get(User.getUserDetails().getImage()) }}"
+                                     class="img-circle user-image" alt="User image" />
+                                <p>
+                                    <th:block th:text="${User.getFirst()}" />
+                                    <th:block th:text="${User.getLast()}" />
+                                    <small th:text="#{main_tpl.logged_in}"></small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <!--<li class="user-body">
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Followers</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Sales</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Friends</a>
+                                </div>
+                            </li>-->
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#"
+                                       th:href="@{/user/profile}"
+                                       class="btn btn-default btn-flat" th:text="#{main_tpl.profile}"></a>
+                                </div>
+                                <div class="pull-right">
+                                    <form th:action="@{/logout}" method="POST">
+                                        <button type="submit"
+                                                th:text="#{main_tpl.sign_out}"
+                                                class="btn btn-default btn-flat" id="log-out"></button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- Sidebar -->
+    <div class="main-sidebar" th:fragment="sidebar">
+        <div class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img th:src="@{${'/resources/img/avatar/'
+                                        + T(com.itsupportme.gis.component.layout.AvatarsRepository)
+                                            .getAvatar().get(User.getUserDetails().getImage()) }}"
+                        class="img-circle user-image" alt="User image" />
+                </div>
+                <div class="pull-left info">
+                    <p>
+                        <!--/*@thymesVar id="User" type="com.itsupportme.gis.entity.User"*/-->
+                        <th:block th:text="${User.getFirst()}" />
+                        <th:block th:text="${User.getLast()}" />
+                    </p>
+                    <a href="#"><i class="fa fa-circle text-success"></i>
+                        <th:block th:text="#{main_tpl.online}" /></a>
+                </div>
+            </div>
+            <form
+                th:if="${User.hasRole(T(com.itsupportme.gis.component.RoleRepository).ROLE_DEVELOPER) or
+                    User.hasRole(T(com.itsupportme.gis.component.RoleRepository).ROLE_MANAGER)}"
+                action="/" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <label class="sr-only" for="q"></label>
+                    <input type="text" name="q" id="q" class="form-control"
+                           data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false"
+                           th:placeholder="#{main_tpl.search}" />
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+            <!-- Main menu -->
+            <ul class="sidebar-menu">
+                <th:block th:replace="template/menu :: menu" />
+            </ul>
+        </div>
+    </div>
+     <!--Main content-->
+    <div class="content-wrapper">
+        <!-- Content header -->
+        <div class="content-header" th:fragment="content-header" th:if="${Menu.getActive() != null}">
+            <h1 th:if="${Menu.getActive().getTitle() != null}">
+                <th:block th:text="${Menu.getActive().getTitle()}" />
+                <small th:if="${Menu.getActive().getComment() != null}"
+                       th:text="${Menu.getActive().getComment()}"></small>
+            </h1>
+        </div>
+        <!-- Content comes here -->
+        <div class="content"></div>
+    </div>
+     <!--Footer-->
+    <div class="main-footer" th:fragment="footer">
+        <div class="pull-right hidden-xs">
+            <b th:text="#{main_tpl.version}"></b> <th:block th:text="#{app.version}" />
+        </div>
+        <strong th:text="#{app.vendor}"></strong> <th:block th:text="#{main_tpl.rights}" />
+    </div>
+</div>
+</body>
+</html>

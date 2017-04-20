@@ -1,0 +1,94 @@
+<div xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+
+    <!--/*@thymesVar id="UserManagementForm" type="com.itsupportme.gis.component.form.UserManagementForm"*/-->
+    <form class="form-paginated" th:object="${UserManagementForm}" method="post"
+          th:action="@{/configuration/user_management/load_users_list}">
+        <div class="row">
+
+                <input type="hidden" id="current-page"   th:field="*{page}"/>
+                <input type="hidden" id="items-per-page" th:field="*{itemsPerPage}" />
+
+                <div th:class="${#fields.hasErrors('username')} ?
+                        'col-xs-12 col-md-4 form-group has-error validation-has-error' :
+                        'col-xs-12 col-md-4 form-group'">
+                    <label for="username" th:text="#{user.username}"></label>
+                    <input class="form-control input-sm" id="username" th:field="*{username}" />
+                            <span class="help-block validation-help-block"
+                                  th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                </div>
+
+                <div th:class="${#fields.hasErrors('first')} ?
+                'col-xs-12 col-md-4 form-group has-error validation-has-error' : 'col-xs-12 col-md-4 form-group'">
+                    <label for="first" th:text="#{person.first_name}"></label>
+                    <input class="form-control input-sm" id="first" th:field="*{first}"/>
+                    <span class="help-block validation-help-block"
+                          th:if="${#fields.hasErrors('first')}" th:errors="*{first}"></span>
+                </div>
+
+                <div th:class="${#fields.hasErrors('last')} ?
+                'col-xs-12 col-md-4 form-group has-error validation-has-error' : 'col-xs-12 col-md-4 form-group'">
+                    <label for="last" th:text="#{person.last_name}">Last Name</label>
+                    <input class="form-control input-sm" id="last" th:field="*{last}" />
+                    <span class="help-block validation-help-block"
+                          th:if="${#fields.hasErrors('last')}" th:errors="*{last}"></span>
+                </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12">
+                <button type="submit"
+                        class="btn btn-primary btn-flat btn-sm pull-right"
+                        th:text="#{actions.show}"><i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!--/*@thymesVar id="UsersList" type="java.util.List<com.itsupportme.gis.entity.User>"*/-->
+    <div th:if="${UsersList != null and UsersList.size() > 0}">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th th:text="#{user.username}"></th>
+            <th th:text="#{person.first_name}">First</th>
+            <th th:text="#{person.last_name}">Last</th>
+            <th th:text="#{user.role}" class="col-md-3">Role</th>
+            <th th:text="#{user.is_enabled}">Is Enabled</th>
+            <th th:text="#{actions.edit}" class="col-md-1 text-center">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user : ${UsersList}">
+            <tr>
+                <td th:text="${user.getId()}"> </td>
+                <td th:text="${user.getUsername()}"> </td>
+                <td th:text="${user.getFirst()}"> </td>
+                <td th:text="${user.getLast()}"> </td>
+                <td>
+                    <th:block th:each="t : ${user.getUserRole()}" th:text="${t.getRole()}"/>
+                </td>
+                <td th:text="${user.getIsEnabled()}"></td>
+                <td class="col-md-1 text-center v-middle">
+                    <button class="btn btn-primary btn-sm edit-button" th:data="${user.getId()}">Edit</button>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+        <!--/*@thymesVar id="Unit" type="com.itsupportme.gis.component.pagination.Unit"*/-->
+        <th:block th:include="template/pagination :: pagination" th:with="Unit = ${Unit}" />
+    </div>
+
+    <div class="alert alert-info" th:if="${UsersList == null or UsersList.size() == 0}">Nothing to show.</div>
+</div>
+<div class="row" xmlns:th="http://www.thymeleaf.org">
+    <div class="col-sm-12 text-right">
+        <button type="button"
+                id="add-button"
+                class="btn btn-default btn-sm">
+            <i class="fa fa-plus"></i>
+            <th:block th:text="#{actions.addNew}" />
+        </button>
+    </div>
+</div>
+<div id="form-container"></div>

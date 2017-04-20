@@ -1,0 +1,55 @@
+<!--/*
+   @thymesVar
+        id="Menu"
+        type="com.itsupportme.gis.component.menu.item.ItemList<com.itsupportme.gis.component.menu.item.MenuItem>"
+*/-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:fragment="meta">
+            <meta name="_csrf" th:content="${_csrf.token}"/>
+            <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+            <meta name="_base_url" th:content="${BaseURL}"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+            <link th:href="@{/resources/favicon.ico}" rel="shortcut icon" type="image/x-icon" />
+            <title>
+                <th:block th:text="#{app.name.one}" /><th:block th:text="#{app.name.two}" />
+                <th:block th:if="${Menu != null}" >
+                    <th:block th:if="${Menu.getActive() != null}" >
+                        <th:block th:if="${Menu.getActive().getTitle() != null}" th:text="${' - ' + Menu.getActive().getTitle()}" />
+                    </th:block>
+                </th:block>
+            </title>
+        </th:block>
+        <th:block th:fragment="javascript">
+            <script type="text/javascript" th:src="@{/resources/js/lib/jquery-1.11.1.min.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/lib/bootstrap.min.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/lib/app.min.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/lib/jquery.inputmask.bundle.min.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/lib/inputmask.binding.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/lib/bootstrap-datepicker.min.js}"></script>
+        </th:block>
+        <th:block th:fragment="javascript-template">
+            <script type="text/javascript" th:src="@{/resources/js/object/applicaton.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/object/util.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/js/page/template.js}"></script>
+        </th:block>
+        <th:block th:fragment="css">
+            <link rel="stylesheet" th:href="@{/resources/css/lib/bootstrap.min.css}" />
+            <link rel="stylesheet" th:href="@{/resources/css/lib//font-awesome.min.css}" />
+            <link rel="stylesheet" th:href="@{/resources/css/lib/admin-lte/admin-lte.min.css}" />
+            <link rel="stylesheet" th:href="@{/resources/css/lib/admin-lte/_all-skins.min.css}" />
+            <link rel="stylesheet" th:href="@{/resources/css/lib/bootstrap-datepicker.min.css}" />
+            <link rel="stylesheet" th:href="@{/resources/css/template.css}" />
+        </th:block>
+
+        <th:block th:fragment="calendar">
+            <link rel="stylesheet" th:href="@{resources/calendar/fullcalendar.min.css}" />
+            <link rel="stylesheet" media="print" th:href="@{/resources/calendar/fullcalendar.print.min.css}" />
+            <script type="text/javascript" th:src="@{/resources/calendar/moment.min.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/calendar/jquery.min.js}"></script>
+            <script type="text/javascript" th:src="@{/resources/calendar/fullcalendar.min.js}"></script>
+        </th:block>
+    </head>
+</html>

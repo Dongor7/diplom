@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="template/head :: meta" />
+        <th:block th:replace="template/head :: css" />
+        <th:block th:replace="template/head :: javascript" />
+        <script type="text/javascript" th:src="@{/resources/js/object/authentication.js}"></script>
+        <script type="text/javascript" th:src="@{/resources/js/page/login.js}"></script>
+    </head>
+	<body class="hold-transition login-page">
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="#"><b th:text="#{app.name.one}"></b><th:block th:text="#{app.name.two}" /></a>
+            </div>
+            <div class="login-box-body">
+                <p class="login-box-msg">
+                    <th:block th:text="#{login.sign_in_greetings}" />
+                </p>
+                <form th:action="@{/login}" method="POST">
+                    <div class="form-group has-feedback">
+                        <label class="sr-only" for="username"></label>
+                        <input type="text" id="username" name="username"
+                               class="form-control" th:placeholder="#{user.username}" />
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="sr-only" for="password"></label>
+                        <input id="password" type="password" name="password"
+                               class="form-control" th:placeholder="#{user.password}" />
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <!--<div class="form-group">
+                        <label><input type="checkbox" name="remember_me" /> Remember me</label>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-xs-8"></div>
+                        <div class="col-xs-4">
+                            <button type="submit"
+                                    class="btn btn-danger btn-block btn-flat" th:text="#{login.sign_in}"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p class="error-text text-danger"></p>
+                            <!--/*@thymesVar id="param" type="java.lang.Object"*/-->
+                            <p class="text-success" th:text="#{login.sign_out_success}"
+                                th:unless="${param.logout == null}"></p>
+                        </div>
+                    </div>
+                    <!--Input below will be generated automatically DO NOT remove comment-->
+                </form>
+            </div>
+        </div>
+	</body>
+</html>

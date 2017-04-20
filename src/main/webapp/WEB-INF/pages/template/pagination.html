@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body th:fragment="pagination">
+    <div class="pagination-wrapper text-center">
+        <!--/*@thymesVar id="Unit" type="com.itsupportme.gis.component.pagination.Unit"*/-->
+        <ul class="pagination" th:if="${Unit.getItemsTotal() > Unit.getItemsPerPage()}">
+            <th:block th:if="${Unit.getCurrentPage() != 1}">
+                <li><a href="#1" th:text="#{pagination.first}">First</a></li>
+                <li><a
+                        th:href="${'#' + #strings.toString(Unit.getCurrentPage() - 1)}"
+                        th:text="#{actions.back}"></a></li>
+            </th:block>
+            <th:block th:each="i : ${#numbers.sequence(Unit.getNegativeDisplayLimit(), Unit.getPositiveDisplayLimit())}">
+                <th:block th:if="${i > 0 and i le Unit.getPagesTotal()}">
+                    <li th:class="${i == Unit.getCurrentPage()} ? 'disabled' : ''">
+                        <a th:href="${'#' +  #strings.toString(i)}" th:text="${#strings.toString(i)}"></a>
+                    </li>
+                </th:block>
+            </th:block>
+            <th:block th:if="${Unit.getCurrentPage() != Unit.getPagesTotal()}">
+                <li><a th:href="${'#' + #strings.toString(Unit.getCurrentPage() + 1)}"
+                       th:text="#{actions.forward}"></a></li>
+                <li><a  th:text="#{pagination.last}"
+                        th:href="${'#' + #strings.toString(Unit.getPagesTotal())}"></a></li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html>

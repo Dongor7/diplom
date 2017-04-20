@@ -1,0 +1,56 @@
+<div xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <!--/*@thymesVar id="UserDetails" type="com.itsupportme.gis.entity.UserDetails"*/-->
+    <form th:object="${UserDetails}" method="POST"
+          th:action="@{/user/profile/interface_settings}">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label th:text="#{user.image}"></label>
+                    <ul class="list-unstyled">
+                        <li class="list-unstyled col-md-6" th:each="avatar :
+                            ${T(com.itsupportme.gis.component.layout.AvatarsRepository).getAvatar().keySet()}">
+                            <label class="radio-inline">
+                                <input type="radio" name="avatar" id="avatar"
+                                       th:value="${avatar}" th:field="*{image}" th:checked="${UserDetails.image}"/>
+                                       <img src="" th:src="@{${'/resources/img/avatar/' +
+                                            T(com.itsupportme.gis.component.layout.AvatarsRepository)
+                                                .getAvatar().get(avatar)}}"
+                                            class="img-circle user-image size-90" alt="User image" />
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label th:text="#{user.color_theme}"></label>
+                    <ul class="list-unstyled">
+                        <li class="list-unstyled col-md-6" th:each="theme :
+                            ${T(com.itsupportme.gis.component.layout.ThemesRepository).getThemes().keySet()}">
+                            <label class="radio-inline">
+                                <input type="radio" name="theme" id="theme"
+                                       th:data="${T(com.itsupportme.gis.component.layout.ThemesRepository)
+                                            .getThemes().get(theme)}"
+                                       th:value="${theme}" th:field="*{theme}" th:checked="${UserDetails.theme}"/>
+                                <th:block
+                                    th:text="${T(com.itsupportme.gis.component.layout.ThemesRepository)
+                                        .getThemes().get(theme)}"/>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-right">
+            <button type="submit" class="btn btn-success btn-sm" th:text="#{actions.apply}"></button>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-12 text-danger" id="error-block"></div>
+    </div>
+</div>
