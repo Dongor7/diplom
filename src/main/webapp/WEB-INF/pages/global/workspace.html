@@ -13,6 +13,7 @@
         $(document).ready(function() {
 
             $('#calendar-container').fullCalendar({
+                events: "/CalendarProject/CalendarJsonServlet",
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -31,13 +32,12 @@
                             start: start,
                             end: end
                         };
-                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                        $('#calendar-container').fullCalendar('renderEvent', eventData, true); // stick? = true
                     }
-                    $('#calendar').fullCalendar('unselect');
+                    $('#calendar-container').fullCalendar('unselect');
                 },
                 editable: true,
-                eventLimit: true, // allow "more" link when too many events
-
+                eventLimit: true
             });
 
         });

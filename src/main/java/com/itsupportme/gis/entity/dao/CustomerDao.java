@@ -7,7 +7,9 @@ import com.itsupportme.gis.entity.User;
 import java.util.List;
 
 public interface CustomerDao {
-    List<Customer> findAll();
 
-    void save(Customer customer, User user);
+    public List<Customer> findAll();
+
+    public void save(Customer customer, User user);
+
 }
