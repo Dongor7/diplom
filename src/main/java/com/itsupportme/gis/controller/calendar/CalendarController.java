@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/calendar")
@@ -28,6 +25,7 @@ public class CalendarController {
     @RequestMapping(value="/CalendarJsonEvent",  method= RequestMethod.GET)
     public  @ResponseBody void showCalendarDetails(HttpServletResponse response) throws IOException {
 
+        System.out.println("ENTER!!!");
 
         List l = new ArrayList();
 
@@ -50,28 +48,5 @@ public class CalendarController {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(new Gson().toJson(l));
 
-
-/*
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("id", 111);
-        map.put("title", "event1");
-        map.put("start", "2011-07-28");
-        map.put("url", "http://yahoo.com/");
-
-        // Convert to JSON string.
-        String json = new Gson().toJson(map);
-        logger.info(json);
-
-        // Write JSON string.
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().write(json);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-*/
     }
 }
