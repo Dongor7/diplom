@@ -20,12 +20,11 @@ public class MenuBuilder {
                             .setId(1).setTitle("Home").setAlias("/")
                             .setComment("Overall information and service status").setIcon("home")
             )
-            /*.addItem(
+            .addItem(
                     (new MenuItem())
-                            .setId(2).setTitle("Customers").setAlias("/customers/view")
-                            .setComment("Customers list")
-                            .setIcon("list-alt")
-            )*/
+                            .setId(2).setTitle("Calendar").setAlias("/calendar")
+                            .setComment("Calendar")
+                            .setIcon("calendar"))
             .addItem(
                     (new MenuItem())
                             .setId(4).setTitle("Management").setSeparator(true)

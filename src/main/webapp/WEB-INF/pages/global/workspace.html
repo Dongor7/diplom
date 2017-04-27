@@ -6,61 +6,6 @@
     <th:block th:replace="template/head :: javascript" />
     <th:block th:replace="template/head :: javascript-template" />
 
-    <th:block th:replace="template/head :: calendar"/>
-
-    <script>
-
-        $(document).ready(function() {
-
-            $('#calendar-container').fullCalendar({
-                events: "/CalendarProject/CalendarJsonServlet",
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                defaultDate: '2017-04-12',
-                navLinks: true, // can click day/week names to navigate views
-                selectable: true,
-                selectHelper: true,
-                select: function(start, end) {
-                    var title = prompt('Event Title:');
-                    var eventData;
-                    if (title) {
-                        eventData = {
-                            title: title,
-                            start: start,
-                            end: end
-                        };
-                        $('#calendar-container').fullCalendar('renderEvent', eventData, true); // stick? = true
-                    }
-                    $('#calendar-container').fullCalendar('unselect');
-                },
-                editable: true,
-                eventLimit: true
-            });
-
-        });
-
-    </script>
-    <style>
-        /*
-        body {
-            margin: 40px 10px;
-            padding: 0;
-            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-            font-size: 14px;
-        }*/
-
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-    </style>
-
-
-
 </head>
 <!--/*@thymesVar id="User" type="com.itsupportme.gis.entity.User"*/-->
 <body th:class="${'skin-' + T(com.itsupportme.gis.component.layout.ThemesRepository)
@@ -72,18 +17,12 @@
             <th:block th:replace="template/main :: content-header" />
             <!--Content comes here-->
             <section class = "content">
-                <!--
                     <div class="row">
                         <div class="col-md-3">
-                            /*@thymesVar id="Today" type="java.util.String"*/
+                            <!--/*@thymesVar id="Today" type="java.util.String"*/-->
                             <h4 th:text="${Today}"></h4>
                         </div>
                     </div>
-                -->
-
-                <div class="box-body" id="calendar-container"></div>
-
-
             </section>
         </div>
         <th:block th:replace="template/main :: footer" />

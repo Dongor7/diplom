@@ -16,9 +16,16 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping(value = "/calendar")
 public class CalendarController {
 
-    @RequestMapping(value="/CalendarProject/CalendarJsonServlet",  method= RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
+    public String main() {
+
+        return "global/calendar";
+    }
+
+    @RequestMapping(value="/CalendarJsonEvent",  method= RequestMethod.GET)
     public  @ResponseBody void showCalendarDetails(HttpServletResponse response) throws IOException {
 
 
