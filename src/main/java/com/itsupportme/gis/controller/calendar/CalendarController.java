@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-//@RequestMapping(value = "/calendar")
 public class CalendarController {
 
     @RequestMapping(value = "/calendar", method = RequestMethod.GET)
@@ -27,8 +26,6 @@ public class CalendarController {
 
     @RequestMapping(value="/calendar/CalendarJsonEvent",  method= RequestMethod.GET)
     public  @ResponseBody void showCalendarDetails(HttpServletResponse response) throws IOException {
-
-        System.out.println("ENTER CALENDAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         List l = new ArrayList();
 
