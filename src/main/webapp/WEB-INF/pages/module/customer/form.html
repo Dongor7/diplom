@@ -5,24 +5,80 @@
         method="POST"
         xmlns:th="http://www.thymeleaf.org"
         th:object="${Customer}">
+    <input type="hidden" th:field="*{id}" />
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
             <div class="form-group">
-                <label
-                        for="customer-name">Customer Name</label>
-                <input
-                        class="form-control"
-                        type="text"
-                        id="customer-name"
-                        placeholder="Customer Name"
-                        th:field="*{name}" />
+                <label for="customer-name">Name</label>
+                <input class="form-control"
+                       type="text"
+                       id="customer-name"
+                       placeholder="Name"
+                       th:field="*{name}" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="customer-phone">Phone</label>
+                <input class="form-control"
+                       type="text"
+                       id="customer-phone"
+                       placeholder="Phone"
+                       th:field="*{phone}" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="customer-fax">Fax</label>
+                <input class="form-control"
+                       type="text"
+                       id="customer-fax"
+                       placeholder="Fax"
+                       th:field="*{fax}" />
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="customer-city">City</label>
+                <input class="form-control"
+                       type="text"
+                       id="customer-city"
+                       placeholder="Gomel"
+                       th:field="*{city}" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="customer-zip">ZIP Code</label>
+                <input class="form-control"
+                       type="text"
+                       id="customer-zip"
+                       placeholder="246000"
+                       th:field="*{zip}" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="customer-country">Country</label>
+                <input class="form-control"
+                       type="text"
+                       id="customer-country"
+                       placeholder="Belarus"
+                       th:field="*{country}" />
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-sm-12 text-right">
             <button type="submit" class="btn btn-success btn-sm"
-                id="submit-button" th:text="#{actions.addNew}"></button>
+                    id="submit-button" th:text="#{actions.addNew}"></button>
         </div>
     </div>
 </form>

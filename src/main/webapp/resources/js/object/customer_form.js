@@ -5,19 +5,22 @@ var CustomerForm = (function() {
 
     CustomerForm.ON_AFTER_CUSTOMER_ADDED = "CUSTOMER_FORM_ON_AFTER_CUSTOMER_ADDED";
 
-    CustomerForm.prototype.container = null;
-    CustomerForm.prototype.overlay   = null;
-    CustomerForm.prototype.form      = null;
+    CustomerForm.prototype.container  = null;
+    CustomerForm.prototype.overlay    = null;
+    CustomerForm.prototype.form       = null;
 
     function CustomerForm(container){
 
+
         var self = this;
 
-        self.container = container;
-        self.overlay   = self.container.next();
+        self.container  = container;
+        self.overlay    = self.container.next();
+
+        self.overlay.show();
 
         self.container.load(
-            Application._base_url + "/customers/form", function() {
+            Application._base_url + "/customers/form/", function() {
                 self.init();
             }
         );
@@ -49,6 +52,7 @@ var CustomerForm = (function() {
         $.ajax({
 
             type:       "POST",
+            dataType:   "JSON",
             url:        self.form.attr("action"),
             data:       self.form.serialize(),
             context:    self.container,

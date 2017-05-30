@@ -19,13 +19,15 @@
         <th:block th:replace="template/main :: content-header" />
         <!--Content comes here-->
         <section class = "content">
+
             <div class="row">
                 <div class="col-md-12">
                     <!--Customer list-->
                     <div class="box box-warning" id="customer-list-box">
                         <div class="box-header with-border">
-                            <h3 class="box-title" th:text="#{customers.list}"></h3>
-
+                            <!-- Заголовок -->
+                            <h3 class="box-title" th:text="#{customers.list}">Thfhs</h3>
+                            <!-- Кнопка -->
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                         class="fa fa-minus"></i>
@@ -37,6 +39,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <!--Customer form-->

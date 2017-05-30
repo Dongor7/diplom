@@ -1,22 +1,36 @@
 <table
         xmlns:th="http://www.thymeleaf.org"
-        class="table table-bordered table-striped">
+        class="table table-bordered table-hover">
     <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Phone</th>
         <th>Fax</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>ZIP</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
 
     <tbody>
     <!--@thymesVar id="customerList" type="java.util.list<Customer>"-->
-    <tr th:each="customer : ${customerList}">
-        <td th:text="${customer.id}">1</td>
-        <td th:text="${customer.name}">1</td>
-        <td th:text="${customer.phone}">+375332501122</td>
-        <td th:text="${customer.fax}">+375332501122</td>
-    </tr>
+        <tr th:data="${customer.id}" class="customer-row cursor-pointer" th:each="customer : ${customerList}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.phone}"></td>
+            <td th:text="${customer.fax}"></td>
+            <td th:text="${customer.city}"></td>
+            <td th:text="${customer.country}"></td>
+            <td th:text="${customer.zip}"></td>
+            <td class="col-md-1 text-center v-middle">
+                <button class="btn btn-primary btn-sm edit-button" th:data="${customer.id}">Edit</button>
+            </td>
+            <td class="col-md-1 text-center v-middle">
+                <button class="btn btn-danger btn-sm delete-button" th:data="${customer.id}">Delete</button>
+            </td>
+        </tr>
     </tbody>
 </table>

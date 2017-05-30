@@ -22,6 +22,12 @@ public class MenuBuilder {
             )
             .addItem(
                     (new MenuItem())
+                            .setId(2).setTitle("Contacts").setAlias("/customers/view")
+                            .setComment("Contacts list")
+                            .setIcon("list-alt")
+            )
+            .addItem(
+                    (new MenuItem())
                             .setId(2).setTitle("Calendar").setAlias("/calendar")
                             .setComment("Calendar")
                             .setIcon("calendar"))

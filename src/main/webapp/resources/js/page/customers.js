@@ -9,4 +9,8 @@ $(document).ready(function() {
     $(document).on(CustomerForm.ON_AFTER_CUSTOMER_ADDED, function(e){
         customerList = new CustomerList(customerContainer);
     });
+
+    $(document).on(CustomerList.ON_AFTER_CUSTOMER_SELECTED, function(e){
+        customerForm      = new CustomerForm(customerFormContainer);
+    });
 });
